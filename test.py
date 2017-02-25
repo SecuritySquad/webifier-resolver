@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import ssl
 
 import sys
 import re
@@ -14,7 +15,7 @@ def get_url_with_protocol(url):
 
 def get_resolved_url(url):
     try:
-        response = urllib2.urlopen(url)
+        response = urllib2.urlopen(url, context=ssl._create_unverified_context())
         return response.geturl()
     except urllib2.URLError, error:
         print error
